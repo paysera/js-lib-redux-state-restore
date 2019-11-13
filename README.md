@@ -16,7 +16,7 @@ To differentiate between the branches we have to pass the storage configuration.
 This configuration is consisted of object, namely:
 
 ```
-export default requiredConfig = {
+export default storeConfig = {
     storeName: 'my-redux-branch-storage',
     errors: true,
     path: 'my.path.to.specific.part.of.state.i.want.to.save',
