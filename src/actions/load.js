@@ -5,17 +5,15 @@ import storageWorker from '../storage/worker';
 
 const loadAction = createAction(LOAD);
 
-const load = storageConfig => identifier => async (dispatch, getState) => {
-    let loadedState = getState();
+const load = storageConfig => identifier => async (dispatch) => {
     try {
-        loadedState = await storageWorker.getItem(identifier);
+        const loadedState = await storageWorker.getItem(storageConfig, identifier);
+        dispatch(loadAction({ storageConfig, loadedState }));
     } catch (error) {
         if (storageConfig.errors) {
             dispatch(reportError(storageConfig)(error));
         }
     }
-
-    dispatch(loadAction({ storageConfig, loadedState }));
 };
 
 export default load;

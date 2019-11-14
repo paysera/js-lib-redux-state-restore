@@ -15,6 +15,12 @@
     "type": "git",
     "url": "https://github.com/paysera/js-lib-redux-state-restore.git"
   },
+  "files": [
+    "package.json",
+    "README.md",
+    "dist",
+    "src"
+  ],
   "keywords": [
     "paysera",
     "redux",
@@ -57,7 +63,6 @@
     "eslint-plugin-react": "^7.12.4",
     "jest": "^24.1.0",
     "rimraf": "^3.0.0",
-    "service-worker-mock": "^2.0.3",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
     "webpack-node-externals": "^1.7.2",

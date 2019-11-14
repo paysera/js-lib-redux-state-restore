@@ -1,4 +1,4 @@
-@paysera/redux-state-restore
+@paysera/redux-state-restore [![Travis CI](https://api.travis-ci.org/paysera/js-lib-redux-state-restore.svg?branch=master)](https://api.travis-ci.org/paysera/js-lib-redux-state-restore.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/paysera/js-lib-redux-state-restore/badge.svg?branch=master)](https://coveralls.io/github/paysera/js-lib-redux-state-restore?branch=master) 
 =
 Provides tools to persist redux state to local storage and restore it based on specific entity in future user sessions for redux applications.
 Library does this by leveraging `localforage` behind a `web-worker` to persist and load state, while higher order reducer and provided react higher order component allows to control the flow.

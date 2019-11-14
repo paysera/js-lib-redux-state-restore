@@ -16,7 +16,7 @@ registerPromiseWorker(async (eventMessage) => {
         type,
     } = eventMessage;
     if (type === STORAGE_INITIATE) {
-        return storageManager.setStorage(storageConfig);
+        storageManager.setStorage(storageConfig);
     }
     if (type === STORAGE_SAVE) {
         const storage = storageManager.getStorage(storageConfig);
