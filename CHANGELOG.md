@@ -1,3 +1,7 @@
+## [0.0.4] - 2019-11-14
+### Changed
+- package.json fix
+
 ## [0.0.3] - 2019-11-14
 ### Changed
 - Load action is not dispatched by thunk if retrieval from storage failed.
