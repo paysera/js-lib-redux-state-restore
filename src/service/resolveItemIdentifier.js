@@ -9,8 +9,8 @@ const resolveItemIdentifier = storageConfig => async (identifier) => {
     } catch (error) {
         return null;
     }
-    if (identifier && availableKeys.includes(identifier)) {
-        result = identifier;
+    if (identifier && availableKeys.includes(`${identifier}`)) {
+        result = `${identifier}`;
     }
     if (result === null && availableKeys.includes(REDUX_STATE_RESTORE_NOT_PERSISTED)) {
         result = REDUX_STATE_RESTORE_NOT_PERSISTED;

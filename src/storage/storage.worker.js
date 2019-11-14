@@ -21,17 +21,17 @@ registerPromiseWorker(async (eventMessage) => {
     if (type === STORAGE_SAVE) {
         const storage = storageManager.getStorage(storageConfig);
 
-        return storage.setItem(identifier, state);
+        return storage.setItem(`${identifier}`, state);
     }
     if (type === STORAGE_REMOVE) {
         const storage = storageManager.getStorage(storageConfig);
 
-        return storage.removeItem(identifier);
+        return storage.removeItem(`${identifier}`);
     }
     if (type === STORAGE_GET) {
         const storage = storageManager.getStorage(storageConfig);
 
-        return storage.getItem(identifier);
+        return storage.getItem(`${identifier}`);
     }
     if (type === STORAGE_KEYS) {
         const storage = storageManager.getStorage(storageConfig);

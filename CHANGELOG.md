@@ -1,3 +1,7 @@
+## [0.0.5] - 2019-11-14
+### Added
+- Identifiers are serialized to strings before making calls to localforage
+
 ## [0.0.4] - 2019-11-14
 ### Changed
 - package.json fix

@@ -6,7 +6,7 @@ import reportError from './actions/reportError';
 import withStorageItemIdentifier from './component/withStorageItemIdentifier';
 import storageWorker from './storage/worker';
 
-const createLoadAction = ({ storeName }) => load({ storeName });
+const createLoadAction = ({ storeName, errors }) => load({ storeName, errors });
 const createSaveAction = ({ storeName }) => save({ storeName });
 const createRemoveAction = ({ storeName }) => remove({ storeName });
 const createReportErrorAction = ({ storeName }) => reportError({ storeName });

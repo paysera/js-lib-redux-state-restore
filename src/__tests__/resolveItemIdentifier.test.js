@@ -8,22 +8,22 @@ describe('resolveItemIdentifier service', () => {
     test.each([
         [
             1,
-            [1, 2, REDUX_STATE_RESTORE_NOT_PERSISTED],
-            1,
+            ['1', '2', REDUX_STATE_RESTORE_NOT_PERSISTED],
+            '1',
         ],
         [
             1,
-            [2, 3, REDUX_STATE_RESTORE_NOT_PERSISTED],
+            ['2', '3', REDUX_STATE_RESTORE_NOT_PERSISTED],
             REDUX_STATE_RESTORE_NOT_PERSISTED,
         ],
         [
             null,
-            [1, 2, REDUX_STATE_RESTORE_NOT_PERSISTED],
+            ['1', '2', REDUX_STATE_RESTORE_NOT_PERSISTED],
             REDUX_STATE_RESTORE_NOT_PERSISTED,
         ],
         [
             null,
-            [1, 2],
+            ['1', '2'],
             null,
         ],
     ])('Resolves identifier based on storage values', async (identifier, keys, expected) => {

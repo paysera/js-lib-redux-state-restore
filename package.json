@@ -1,6 +1,6 @@
 {
   "name": "@paysera/redux-state-restore",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Provides tools to persist current redux state to local storage and reinitialize it based on requirements",
   "main": "dist/main.js",
   "scripts": {
