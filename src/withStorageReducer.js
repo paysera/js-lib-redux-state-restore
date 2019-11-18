@@ -1,9 +1,6 @@
 import { get, update } from 'lodash/object';
-import { debounce } from 'lodash/function';
 import { SAVE, LOAD, REMOVE } from './constants/actionTypes';
 import storageWorker from './storage/worker';
-
-const setItemWithDebounce = debounce(storageWorker.setItem, 500);
 
 const withStorageReducer = ({ storeName, path }) => reducer => (state, action, ...rest) => {
     const { type, payload } = action;
@@ -15,7 +12,7 @@ const withStorageReducer = ({ storeName, path }) => reducer => (state, action, .
                 toSave = get(state, path);
             }
 
-            setItemWithDebounce(storageConfig, identifier, toSave);
+            storageWorker.setItem(storageConfig, identifier, toSave);
         }
         if (type === REMOVE) {
             const { payload: { storageConfig, identifier } } = action;

@@ -1,4 +1,5 @@
 import PromiseWorker from 'promise-worker';
+import { debounce } from 'lodash/function';
 import StorageWorker from './storage.worker';
 import {
     STORAGE_REMOVE,
@@ -10,17 +11,26 @@ import {
 
 const worker = new PromiseWorker(new StorageWorker());
 
-const initiate = storageConfig => worker.postMessage({
-    storageConfig,
-    type: STORAGE_INITIATE,
-});
+const debouncedSetItems = {};
 
-const setItem = (storageConfig, identifier, state) => worker.postMessage({
+const storeItem = (storageConfig, identifier, state) => worker.postMessage({
     storageConfig,
     identifier,
     state,
     type: STORAGE_SAVE,
 });
+
+const initiate = (storageConfig) => {
+    debouncedSetItems[storageConfig.storeName] = debounce(storeItem, 500);
+    worker.postMessage({
+        storageConfig,
+        type: STORAGE_INITIATE,
+    });
+};
+
+const setItem = (storageConfig, identifier, state) => {
+    debouncedSetItems[storageConfig.storeName](storageConfig, identifier, state);
+};
 
 const removeItem = (storageConfig, identifier) => worker.postMessage({
     storageConfig,

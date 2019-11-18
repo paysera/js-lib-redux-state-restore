@@ -8,9 +8,6 @@ jest.mock('../constants/actionTypes', () => ({
     REMOVE: 'remove',
 }));
 jest.mock('../storage/worker');
-jest.mock('lodash/function', () => ({
-    debounce: fn => fn,
-}));
 
 describe('withStorageReducer function', () => {
     afterEach(() => {

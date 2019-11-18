@@ -1,3 +1,7 @@
+## [0.0.7] - 2019-11-18
+### Changed
+- Separated debounce for setItem function for each specific store.
+
 ## [0.0.5] - 2019-11-14
 ### Added
 - Identifiers are serialized to strings before making calls to localforage
