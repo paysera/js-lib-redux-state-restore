@@ -85,13 +85,13 @@ Usage:
 
 Dispatch `saveAction` to save state to storage. Provide identifier as it's payload. Value can be falsy, in this case library will assign one of a kind identifier which is handled automatically by it if you leverage provided HOC.
 
+<strong>Remove: </strong>
+
+Dispatch `removeAction` to remove state from storage. Provide identifier as it's payload. Removes not persisted entity when provided with falsy value.
+
 <strong>Loading:</strong>
 
 Dispatch `loadAction` to load state from storage. Provide identifier as it's payload. Value should not be falsy.
-
-<strong>Remove: </strong>
-
-Dispatch `removeAction` to remove state from storage. Provide identifier as it's payload. Value should not be falsy.
 
 <strong>HOC:</strong>
 

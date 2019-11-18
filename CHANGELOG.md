@@ -1,3 +1,7 @@
+## [0.0.8] - 2019-11-18
+### Changed
+- Auto resolves not persisted identifier on remove action from falsy value.
+
 ## [0.0.7] - 2019-11-18
 ### Changed
 - Separated debounce for setItem function for each specific store.
