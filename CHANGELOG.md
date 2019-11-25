@@ -1,3 +1,7 @@
+## [1.0.2] - 2019-11-25
+### Changed
+- Expanded README.md
+
 ## [1.0.1] - 2019-11-25
 ### Changed
 - Fixed load action unit test case.
