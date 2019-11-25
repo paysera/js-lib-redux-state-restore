@@ -1,6 +1,7 @@
 import load from '../actions/load';
 import storageWorker from '../storage/worker';
 import { LOAD } from '../constants/actionTypes';
+import { REDUX_STATE_RESTORE_NOT_PERSISTED } from '../constants/notPersisted';
 
 jest.mock('../storage/worker');
 jest.mock('../constants/actionTypes', () => ({
@@ -13,16 +14,19 @@ describe('Load action', () => {
         storageWorker.getItem.mockClear();
     });
 
-    test('Loads from storageWorker based on identifier', async () => {
+    test.each([
+        [1, 1],
+        [null, REDUX_STATE_RESTORE_NOT_PERSISTED],
+    ])('Loads from storageWorker based on identifier', async (identifier, expected) => {
         const loadedState = 'storage_state';
         storageWorker.getItem.mockReturnValue(loadedState);
         const storageConfig = { storeName: 'name' };
         const configuredLoad = load(storageConfig);
         const dispatch = jest.fn();
         const getState = () => {};
-        await configuredLoad(1)(dispatch, getState);
+        await configuredLoad(identifier)(dispatch, getState);
 
-        expect(storageWorker.getItem).toHaveBeenCalledWith(storageConfig, 1);
+        expect(storageWorker.getItem).toHaveBeenCalledWith(storageConfig, expected);
         expect(dispatch).toHaveBeenCalledWith({ type: LOAD, payload: { storageConfig, loadedState } });
     });
 

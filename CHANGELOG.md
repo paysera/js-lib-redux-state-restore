@@ -1,3 +1,9 @@
+## [1.0.0] - 2019-11-25
+### Changed
+- Removed path property from storage configuration object.
+- Added `normalizeToStorage` and `normalizeFromStorage` to storage configuration object.
+- Exposed `createItemIdentifierResolver` factory function.
+
 ## [0.0.8] - 2019-11-18
 ### Changed
 - Auto resolves not persisted identifier on remove action from falsy value.

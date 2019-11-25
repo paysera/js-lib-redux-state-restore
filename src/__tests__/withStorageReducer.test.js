@@ -40,8 +40,12 @@ describe('withStorageReducer function', () => {
         expect(storageWorker.setItem).toHaveBeenCalledWith(storageConfig, 1, state);
     });
 
-    test('Calls setItem on part of the state based on action and provided path', () => {
-        const storageConfig = { storeName: 'test_store', path: 'two' };
+    test('Calls setItem on part of the state based on action and provided normalizer', () => {
+        const storageConfig = {
+            storeName: 'test_store',
+            normalizeToStorage: ({ two }) => two,
+            normalizeFromStorage: () => {},
+        };
         const reducer = withStorageReducer(storageConfig)(state => state);
         const state = { one: 1, two: 2 };
         const result = reducer(state, { type: SAVE, payload: { storageConfig, identifier: 1 } });
@@ -52,7 +56,7 @@ describe('withStorageReducer function', () => {
     });
 
     test('Calls removeItem based on action', () => {
-        const storageConfig = { storeName: 'test_store', path: 'two' };
+        const storageConfig = { storeName: 'test_store' };
         const reducer = withStorageReducer(storageConfig)(state => state);
         const state = { one: 1, two: 2 };
         const result = reducer(state, { type: REMOVE, payload: { storageConfig, identifier: 1 } });
@@ -75,7 +79,20 @@ describe('withStorageReducer function', () => {
     });
 
     test('Load state based on action and update according to provided path', () => {
-        const storageConfig = { storeName: 'test_store', path: 'three.europe.spain' };
+        const storageConfig = {
+            storeName: 'test_store',
+            normalizeToStorage: () => {},
+            normalizeFromStorage: (state, loadedState) => ({
+                ...state,
+                three: {
+                    ...state.three,
+                    europe: {
+                        ...state.three.europe,
+                        spain: loadedState,
+                    },
+                },
+            }),
+        };
         const reducer = withStorageReducer(storageConfig)(state => state);
         const state = {
             one: 1,

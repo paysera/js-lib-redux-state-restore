@@ -1,15 +1,18 @@
-import { get, update } from 'lodash/object';
 import { SAVE, LOAD, REMOVE } from './constants/actionTypes';
 import storageWorker from './storage/worker';
 
-const withStorageReducer = ({ storeName, path }) => reducer => (state, action, ...rest) => {
+const withStorageReducer = ({
+    storeName,
+    normalizeToStorage,
+    normalizeFromStorage,
+}) => reducer => (state, action, ...rest) => {
     const { type, payload } = action;
     if (payload && payload.storageConfig && storeName === payload.storageConfig.storeName) {
         if (type === SAVE) {
             const { payload: { storageConfig, identifier } } = action;
             let toSave = state;
-            if (typeof path === 'string') {
-                toSave = get(state, path);
+            if (typeof normalizeToStorage === 'function') {
+                toSave = normalizeToStorage(toSave);
             }
 
             storageWorker.setItem(storageConfig, identifier, toSave);
@@ -20,10 +23,12 @@ const withStorageReducer = ({ storeName, path }) => reducer => (state, action, .
         }
         if (type === LOAD) {
             const { payload: { loadedState } } = action;
+            let toLoad = loadedState;
+            if (typeof normalizeFromStorage === 'function') {
+                toLoad = normalizeFromStorage(state, toLoad);
+            }
 
-            return path
-                ? reducer(update({ ...state }, path, () => loadedState), action, ...rest)
-                : reducer(loadedState, action, ...rest);
+            return reducer(toLoad, action, ...rest);
         }
     }
 

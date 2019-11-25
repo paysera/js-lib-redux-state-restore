@@ -19,13 +19,15 @@ This configuration is consisted of object, namely:
 export default storeConfig = {
     storeName: 'my-redux-branch-storage',
     errors: true,
-    path: 'my.path.to.specific.part.of.state.i.want.to.save',
+    normalizeToStorage: ({ addresses, phones }) => ({ addressess, phones }),
+    normalizeFromStorage (state, loadedState) => ({ ...state, ...loadedState }),
 }
 ```
 
 - `storeName` required parameter, initiates local storage under this name and uses it tie actions to specific storage.
 - `errors` optional, when turned on will dispatch and action which you can listen for if error occurs when loading state from storage.
-- `path` optional, use when you need to save only section of the state. On load it will return new patched up state.
+- `normalizeToStorage` optional, use when you need to change state before it's saved into storage. For example, want to avoid storing huge images or save only part of the state. Gets state as single argument.
+- `normalizeFromStorage` optional, use when you need to modify or patch up part of the state on the current state. Get's redux state as first and state from storage as it's second argument.
 
 <strong>Reducer:</strong>
 ```
@@ -119,3 +121,12 @@ function ExampleParent(props) {
 }
 ```
 The component will only render if something of relevance according to provided identifier was found in storage and will provide exact specific identifier for that item inside of the wrapper component. It's best to dispatch `loadAction` and `removeAction` actions here.
+
+<strong>ResolveItemIdentifier:</strong>
+
+When provided with item identifier, function will resolve correct identifier for current entity. Identifier can be falsy or `string|number`. Returns `string|null`.
+
+
+<strong>Unit testing</strong>:
+
+Because library uses a web worker, it does not work in node environment as is. You'll have to mock the entire module. 
