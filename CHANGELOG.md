@@ -1,3 +1,7 @@
+## [1.0.1] - 2019-11-25
+### Changed
+- Fixed load action unit test case.
+
 ## [1.0.0] - 2019-11-25
 ### Changed
 - Removed path property from storage configuration object.
