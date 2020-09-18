@@ -1,4 +1,4 @@
-## [1.0.3] - 2019-11-25
+## [1.0.3] - 2020-09-18
 ### Fixed
 - Only passes `storeName` from storage config to worker to prevent serialization issues.
 
