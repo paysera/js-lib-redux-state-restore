@@ -13,38 +13,38 @@ const worker = new PromiseWorker(new StorageWorker());
 
 const debouncedSetItems = {};
 
-const storeItem = (storageConfig, identifier, state) => worker.postMessage({
-    storageConfig,
+const storeItem = ({ storeName }, identifier, state) => worker.postMessage({
+    storageConfig: { storeName },
     identifier,
     state,
     type: STORAGE_SAVE,
 });
 
-const initiate = (storageConfig) => {
-    debouncedSetItems[storageConfig.storeName] = debounce(storeItem, 500);
+const initiate = ({ storeName }) => {
+    debouncedSetItems[storeName] = debounce(storeItem, 500);
     worker.postMessage({
-        storageConfig,
+        storageConfig: { storeName },
         type: STORAGE_INITIATE,
     });
 };
 
-const setItem = (storageConfig, identifier, state) => {
-    debouncedSetItems[storageConfig.storeName](storageConfig, identifier, state);
+const setItem = ({ storeName }, identifier, state) => {
+    debouncedSetItems[storeName]({ storeName }, identifier, state);
 };
 
-const removeItem = (storageConfig, identifier) => worker.postMessage({
-    storageConfig,
+const removeItem = ({ storeName }, identifier) => worker.postMessage({
+    storageConfig: { storeName },
     identifier,
     type: STORAGE_REMOVE,
 });
 
-const keys = storageConfig => worker.postMessage({
-    storageConfig,
+const keys = ({ storeName }) => worker.postMessage({
+    storageConfig: { storeName },
     type: STORAGE_KEYS,
 });
 
-const getItem = (storageConfig, identifier) => worker.postMessage({
-    storageConfig,
+const getItem = ({ storeName }, identifier) => worker.postMessage({
+    storageConfig: { storeName },
     identifier,
     type: STORAGE_GET,
 });
