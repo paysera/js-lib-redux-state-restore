@@ -38,12 +38,13 @@
   },
   "homepage": "https://github.com/paysera/js-lib-redux-state-restore#readme",
   "dependencies": {
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.8.0",
     "localforage": "^1.7.3",
     "lodash": "^4.17.15",
     "promise-worker": "^2.0.1",
     "prop-types": "^15.7.2",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5",
     "redux-thunk": "^2.3.0"
