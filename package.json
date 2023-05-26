@@ -1,6 +1,6 @@
 {
   "name": "@paysera/redux-state-restore",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Provides tools to persist current redux state to local storage and reinitialize it based on requirements",
   "main": "dist/main.js",
   "scripts": {
@@ -38,7 +38,6 @@
   },
   "homepage": "https://github.com/paysera/js-lib-redux-state-restore#readme",
   "dependencies": {
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.8.0",
     "localforage": "^1.7.3",
     "lodash": "^4.17.15",
     "promise-worker": "^2.0.1",
@@ -50,6 +49,7 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.8.0",
     "@babel/core": "^7.3.4",
     "@babel/plugin-transform-runtime": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
@@ -59,7 +59,6 @@
     "babel-loader": "^8.0.5",
     "coveralls": "^3.0.7",
     "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^5.3.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jest": "^22.2.2",
